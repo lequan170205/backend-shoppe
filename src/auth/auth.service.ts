@@ -20,6 +20,7 @@ export class AuthService {
     const createdUser = new this.userModel({
       ...createUserDto,
       password: hashedPassword,
+      role: createUserDto.role || 'user',
       createdAt: new Date(),
     });
     return createdUser.save();
@@ -42,7 +43,7 @@ export class AuthService {
       return { message: 'Wrong password' };
     }
 
-    const payload = { id: user._id, email: user.email };
+    const payload = { id: user._id, email: user.email, role: user.role };
     const token = this.jwtService.sign(payload);
     return { token };
   }
