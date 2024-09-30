@@ -27,7 +27,15 @@ export class Order extends Document {
 
   @Prop({
     required: true,
-    enum: ['pending', 'shipped', 'delivered', 'cancelled'],
+    enum: [
+      'pending',
+      'processing',
+      'shipped',
+      'delivered',
+      'completed',
+      'cancelled',
+      'returned',
+    ],
     default: 'pending',
   })
   status: string;
@@ -37,8 +45,7 @@ export class Order extends Document {
 
   @Prop({
     type: {
-      addressLine1: { type: String, required: true },
-      addressLine2: { type: String },
+      addressLine: { type: String, required: true },
       city: { type: String, required: true },
       postalCode: { type: String, required: true },
       country: { type: String, required: true },
@@ -46,18 +53,17 @@ export class Order extends Document {
     required: true,
   })
   shippingAddress: {
-    addressLine1: string;
-    addressLine2?: string;
+    addressLine: string;
     city: string;
     postalCode: string;
     country: string;
   };
 
-  @Prop({ default: Date.now })
-  createdAt: Date;
+  @Prop({ required: true })
+  phoneNumber: string;
 
   @Prop({ default: Date.now })
-  updatedAt: Date;
+  createdAt: Date;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);
