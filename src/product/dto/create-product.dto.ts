@@ -1,4 +1,12 @@
-import { IsString, IsNotEmpty, IsNumber, IsOptional, IsPositive, IsUrl, Min } from 'class-validator';
+import {
+  IsString,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsPositive,
+  IsUrl,
+  Min,
+} from 'class-validator';
 
 export class CreateProductDto {
   @IsString()
@@ -29,8 +37,4 @@ export class CreateProductDto {
   @IsString()
   @IsOptional()
   readonly brand?: string;
-
-  @IsString()
-  @IsNotEmpty()
-  readonly categoryId: string;
 }

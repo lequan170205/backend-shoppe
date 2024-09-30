@@ -1,7 +1,5 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
-import { Category } from './category.schema';
-import { Review } from './review.schema';
+import { Document } from 'mongoose';
 
 @Schema()
 export class Product extends Document {
@@ -31,12 +29,6 @@ export class Product extends Document {
 
   @Prop({ default: true })
   isAvailable: boolean;
-
-  @Prop({ type: Types.ObjectId, ref: 'Category' })
-  category: Category;
-
-  @Prop([{ type: Types.ObjectId, ref: 'Review' }])
-  reviews: Review[];
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
