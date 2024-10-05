@@ -1,16 +1,12 @@
 import {
   Body,
   Controller,
-  UseGuards,
   Post,
   Get,
   Param,
   Patch,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { JwtAuthGuard } from 'src/auth/auth.guard';
 import { Product } from './schemas/product.schema';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
