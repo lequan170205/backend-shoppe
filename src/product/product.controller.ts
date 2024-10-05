@@ -19,13 +19,11 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post('find')
   async getAllProducts() {
     return this.productService.findAllProducts();
   }
 
-  @UseGuards(JwtAuthGuard)
   @Post('add')
   async addProduct(
     @Body() createProductDto: CreateProductDto,
@@ -33,7 +31,6 @@ export class ProductController {
     return this.productService.addProduct(createProductDto);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get('find/:id')
   async findProductById(@Param('id') id: string) {
     const findProductId = await this.productService.findProductById(id);
@@ -42,7 +39,6 @@ export class ProductController {
 
 
   
-  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   updateProductById(
     @Param('id') id: string,
